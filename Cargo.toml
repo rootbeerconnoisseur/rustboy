@@ -1,0 +1,9 @@
+[package]
+
+name = "librustboy"
+version = "0.0.1"
+authors = ["whitenoise"]
+
+[[bin]]
+name = "rustboy"
+path = "src/librustboy.rs"
