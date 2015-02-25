@@ -43,6 +43,8 @@ struct Z80_Registers {
     bc: u16,    // BC
     de: u16,    // DE
     hl: u16,    // HL
+    // flags
+    f: u8,
     // pointers:
     sp: u16,    // stack pointer
     pc: u16     // program counter / instruction pointer
@@ -69,6 +71,8 @@ impl Z80_CPU {
         self.regs.bc = 0;
         self.regs.de = 0;
         self.regs.hl = 0;
+        // clear flags
+        self.regs.f = 0;
         // clear pointers
         self.regs.sp = 0; // beginning of stack
         self.regs.pc = 0; // back to first instruction
@@ -76,5 +80,18 @@ impl Z80_CPU {
         // reset the clock
         self.clock.m = 0;
         self.clock.t = 0;
+    }
+
+    fn trace(&mut self) {
+        // TODO: Add disassembler to give real stack trace
+        println!(
+            "ZIP:{:04X}\nZA:{:02X}\nZB:{:02X} ZC:{:02X}\n\
+            ZD:{:02X} ZE:{:02X}\nZH:{:02X} ZL:{:02X}\n\
+            ZSP:{:02X} CYC:{}\
+            F:{:02X}",
+            self.regs.pc, self.regs.a, self.regs.b, self.regs.c,
+            self.regs.d, self.regs.e, self.regs.h, self.regs.l,
+            self.regs.sp, self.clock.t, self.regs.f
+        );
     }
 }
