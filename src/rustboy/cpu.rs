@@ -6,6 +6,17 @@
  *
  */
 
+// Declarations
+// These have Z80 added to the names because eventually ARM7TDMI architecture
+// will also be defined here.
+struct Z80_Clock;
+struct Z80_CPU;
+struct Z80_Registers;
+
+struct Z80_Clock {
+
+}
+
 /*
   16bit Hi   Lo   Name/Function
   AF    A    -    Accumulator & Flags
@@ -15,7 +26,7 @@
   SP    -    -    Stack Pointer
   PC    -    -    Program Counter/Pointer
 */
-struct Registers {
+struct Z80_Registers {
     // 8-bit registers:
     a: u8,      // acc and flags
     b: u8,      // BC
@@ -34,4 +45,4 @@ struct Registers {
     pc: u16     // program counter / instruction pointer
 }
 
-struct CPU;
+struct Z80_CPU;
